@@ -9,7 +9,6 @@ const productRating = document.getElementById("productRating");
 const productImage = document.getElementById("productImage");
 const cardList = document.getElementById("card-list");
 const cartTemplete = document.getElementById("cart-template");
-console.log(cartTemplete);
 
 function updateUI({ products }) {
   products.forEach((product) => {
@@ -44,9 +43,20 @@ function updateUIAboutUI(product) {
   productImage.src = images;
 }
 
-function updateCardUI(products) {
+export function updateCardUI(products) {
   products.forEach((product) => {
-    // const template =
+    const { title, description, price, rating, brand, images } = product;
+
+    const clone = cartTemplete.content.cloneNode(true);
+    const productImage = clone.querySelector(".product-img");
+    const productName = clone.querySelector(".name");
+    const productBrands = clone.querySelector(".brand");
+    const productPrice = clone.querySelector(".price");
+    productImage.src = `${product.thumbnail}`;
+    productName.textContent = title;
+    productBrands.textContent = brand;
+    productPrice.textContent = `${price}$`;
+    cardList.appendChild(clone);
   });
 }
 

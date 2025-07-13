@@ -1,6 +1,7 @@
 let products = localStorage.getItem("products")
   ? JSON.parse(localStorage.getItem("products"))
   : [];
+
 const productAmount = document.getElementById("product-amount");
 
 export const changeBakset = (products) => {
@@ -32,6 +33,6 @@ export const addProduct = (p) => {
     products.push({ ...p, amount: 1 });
   }
 
-  localStorage.setItem("products", JSON.stringify(products));
   changeBakset(products);
+  localStorage.setItem("products", JSON.stringify(products));
 };
