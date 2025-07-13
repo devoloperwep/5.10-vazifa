@@ -7,6 +7,9 @@ const productPrice = document.getElementById("productPrice");
 const productBrands = document.getElementById("productBrands");
 const productRating = document.getElementById("productRating");
 const productImage = document.getElementById("productImage");
+const cardList = document.getElementById("card-list");
+const cartTemplete = document.getElementById("cart-template");
+console.log(cartTemplete);
 
 function updateUI({ products }) {
   products.forEach((product) => {
@@ -39,6 +42,12 @@ function updateUIAboutUI(product) {
   productBrands.textContent = brand;
   productRating.textContent = rating;
   productImage.src = images;
+}
+
+function updateCardUI(products) {
+  products.forEach((product) => {
+    // const template =
+  });
 }
 
 export default updateUI;

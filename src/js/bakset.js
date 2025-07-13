@@ -1,13 +1,20 @@
-let products = [];
-const productAmount = document.getElementById("products-amount");
+let products = localStorage.getItem("products")
+  ? JSON.parse(localStorage.getItem("products"))
+  : [];
+const productAmount = document.getElementById("product-amount");
 
-const changeBakset = () => {
+export const changeBakset = (products) => {
   let amount = 0;
   products.forEach((product) => {
     amount += product.amount;
-    productAmount.textContent = amount;
   });
+  productAmount.textContent = amount;
 };
+
+if (products) {
+  changeBakset(products);
+}
+
 export const addProduct = (p) => {
   let isAdded = products.find((product) => product.id == p.id);
   Toastify({
@@ -24,7 +31,7 @@ export const addProduct = (p) => {
   } else {
     products.push({ ...p, amount: 1 });
   }
-  changeBakset();
-  console.log(isAdded);
-  console.log(products);
+
+  localStorage.setItem("products", JSON.stringify(products));
+  changeBakset(products);
 };
